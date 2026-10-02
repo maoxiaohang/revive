@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>毛筱航 · 问题不大,我们再来</title>
+  <meta name="description" content="毛筱航 —— 电气工程及其自动化大一学生,Vibe AI Lab 新成员。羽毛球、周杰伦、动漫,以及一句座右铭:问题不大,我们再来。" />
+  <style>
+    :root {
+      --ink: #101012;
+      --ink-2: #17171a;
+      --paper: #f2efe8;
+      --muted: #8d8a84;
+      --red: #d8402c;
+      --red-soft: rgba(216, 64, 44, 0.14);
+      --line: rgba(242, 239, 232, 0.12);
+      --serif: "Kaiti SC", "STKaiti", "KaiTi", "楷体", "DFKai-SB", "BiauKai", "Songti SC", "Noto Serif SC", "SimSun", serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ink);
+      color: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Source Han Sans SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.8;
+      letter-spacing: 0.3px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ink wash background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(60% 40% at 15% 8%, rgba(242,239,232,0.05), transparent 60%),
+        radial-gradient(50% 45% at 88% 30%, rgba(216,64,44,0.10), transparent 62%),
+        radial-gradient(70% 55% at 50% 100%, rgba(242,239,232,0.04), transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 0 28px; }
+
+    /* ============ HERO ============ */
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 40px;
+      padding: 72px 0 48px;
+    }
+
+    .hero-left .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--red);
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .hero-left .kicker::before {
+      content: "";
+      width: 34px; height: 1px; background: var(--red);
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(56px, 11vw, 116px);
+      line-height: 1.02;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    .hero h1 .stroke { color: var(--red); }
+
+    .hero .sub {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: clamp(15px, 2.2vw, 19px);
+      max-width: 30ch;
+    }
+
+    .type-line {
+      margin-top: 26px;
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 14px;
+      color: var(--paper);
+      min-height: 1.6em;
+    }
+    .type-line .caret { color: var(--red); animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* vertical name + seal on the right */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 26px;
+    }
+    .v-name {
+      writing-mode: vertical-rl;
+      font-family: var(--serif);
+      font-size: 26px;
+      letter-spacing: 10px;
+      color: var(--muted);
+      border-left: 1px solid var(--line);
+      padding-left: 18px;
+    }
+    .scroll-hint {
+      position: absolute;
+      left: 28px; bottom: 26px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 2px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .scroll-hint::after {
+      content: ""; width: 1px; height: 40px;
+      background: linear-gradient(var(--red), transparent);
+      animation: drop 1.8s ease-in-out infinite;
+    }
+    @keyframes drop { 0%{transform:scaleY(0);transform-origin:top} 60%{transform:scaleY(1)} 100%{transform:scaleY(0);transform-origin:bottom} }
+
+    /* ============ MARQUEE ============ */
+    .marquee {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+      padding: 16px 0;
+      background: var(--ink-2);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 48px;
+      width: max-content;
+      animation: slide 26s linear infinite;
+      font-family: var(--serif);
+      font-size: 20px;
+      letter-spacing: 4px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .marquee-track b { color: var(--red); font-weight: 400; }
+    @keyframes slide { to { transform: translateX(-50%); } }
+
+    /* ============ SECTIONS ============ */
+    section { padding: 84px 0; }
+
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .sec-head .num {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      color: var(--red);
+      font-size: 14px;
+    }
+    .sec-head h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+    .sec-head .rule { flex: 1; height: 1px; background: var(--line); }
+
+    /* about */
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: start; }
+    .about-grid p { color: #cfccc5; font-size: 16.5px; }
+    .about-grid p + p { margin-top: 14px; }
+    .about-grid p strong { color: var(--paper); }
+
+    /* interests */
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .card {
+      background: var(--ink-2);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 26px 20px;
+      text-align: center;
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+      cursor: default;
+    }
+    .card:hover { transform: translateY(-6px); border-color: var(--red); background: #1c1c20; }
+    .card .ico { font-size: 30px; display: block; margin-bottom: 12px; }
+    .card h3 { font-size: 16px; font-weight: 600; }
+    .card p { color: var(--muted); font-size: 13px; margin-top: 6px; }
+
+    /* vinyl */
+    .now-playing {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      background: var(--ink-2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 22px 26px;
+    }
+    .vinyl {
+      width: 74px; height: 74px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, var(--red) 0 12%, #000 13% 100%);
+      box-shadow: inset 0 0 0 6px #1e1e22, inset 0 0 0 12px #141416;
+      animation: spin 4s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .now-playing .np-label { font-size: 12px; letter-spacing: 2px; color: var(--red); }
+    .now-playing .np-song { font-size: 17px; font-weight: 600; margin-top: 4px; }
+    .now-playing .np-artist { color: var(--muted); font-size: 13px; margin-top: 2px; }
+    .now-playing .np-lyric {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+      color: #b9b6ae;
+      font-family: var(--serif);
+      font-size: 15px;
+      letter-spacing: 1px;
+      font-style: italic;
+    }
+
+    /* motto */
+    .motto {
+      text-align: center;
+      padding: 110px 0;
+      position: relative;
+    }
+    .motto .big {
+      font-family: var(--serif);
+      font-size: clamp(38px, 8vw, 84px);
+      font-weight: 700;
+      letter-spacing: 6px;
+      line-height: 1.3;
+    }
+    .motto .big em { font-style: normal; color: var(--red); }
+    .motto .by {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 15px;
+      letter-spacing: 2px;
+    }
+    .motto .brush {
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 130%; height: 200px;
+      transform: translate(-50%, -50%) rotate(-3deg);
+      background: linear-gradient(90deg, transparent, var(--red-soft) 20%, var(--red-soft) 80%, transparent);
+      z-index: -1;
+      filter: blur(2px);
+    }
+
+    /* contact */
+    .contact-card {
+      background: var(--ink-2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .contact-card .ct-label { color: var(--muted); font-size: 13px; letter-spacing: 2px; }
+    .contact-card a.mail {
+      font-family: var(--serif);
+      font-size: clamp(20px, 4vw, 32px);
+      color: var(--paper);
+      text-decoration: none;
+      border-bottom: 2px solid var(--red);
+      padding-bottom: 4px;
+      transition: color .2s ease;
+      word-break: break-all;
+    }
+    .contact-card a.mail:hover { color: var(--red); }
+
+    footer {
+      padding: 40px 0 56px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 1px;
+      border-top: 1px solid var(--line);
+    }
+
+    /* reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 56px; }
+      .hero-right { flex-direction: row; justify-content: flex-start; }
+      .v-name { writing-mode: horizontal-tb; border-left: none; border-top: 1px solid var(--line); padding: 14px 0 0; letter-spacing: 6px; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .contact-card { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 460px) {
+      .cards { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track, .vinyl, .scroll-hint::after, .type-line .caret { animation: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-left">
+        <span class="kicker">Vibe AI Lab · Freshman</span>
+        <h1>毛筱航<span class="stroke">。</span></h1>
+        <p class="sub">电气工程及其自动化 · 大一在读<br />从零开始,认真学 AI</p>
+        <p class="type-line"><span id="typed"></span><span class="caret">▍</span></p>
+      </div>
+      <div class="hero-right">
+        <div class="v-name">问题不大 · 我们再来</div>
+      </div>
+      <div class="scroll-hint">SCROLL</div>
+    </header>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="mq">
+      <span>羽毛球 <b>✦</b> 周杰伦 <b>✦</b> 陶喆 <b>✦</b> 孙燕姿 <b>✦</b> 刺客伍六七 <b>✦</b> AI <b>✦</b> 我不是戏神 <b>✦</b> 十日终焉 <b>✦</b></span>
+      <span>羽毛球 <b>✦</b> 周杰伦 <b>✦</b> 陶喆 <b>✦</b> 孙燕姿 <b>✦</b> 刺客伍六七 <b>✦</b> AI <b>✦</b> 我不是戏神 <b>✦</b> 十日终焉 <b>✦</b></span>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section id="about" class="reveal" aria-labelledby="about-t">
+      <div class="sec-head"><span class="num">01</span><h2 id="about-t">关于我</h2><span class="rule"></span></div>
+      <div class="about-grid">
+        <div>
+          <p>大家好,我是<strong>毛筱航</strong>,一名电气工程及其自动化专业的大一学生。和很多刚进校园的人一样,我正站在一大堆「第一次」的中间:第一次离开熟悉的环境、第一次真正为自己规划方向、第一次意识到,原来世界比我想象的要大得多。</p>
+          <p>这个学期,我加入了 <strong>Vibe AI Lab</strong> 社团,开始<strong>从零学习 AI</strong>。说实话,起步并不轻松——陌生的概念、看不完的资料、跑不通的代码,都曾让我怀疑自己是不是来错了地方。但奇怪的是,我并没有想逃,反而越陷越深:每当弄懂一个原理、跑通一段程序,那种「原来如此」的快乐,是别的东西给不了的。我对这个领域,是真心抱有浓厚的兴趣。</p>
+          <p>代码之外,我的生活也挺热闹。球场上我打<strong>羽毛球</strong>,享受每一次全力挥拍;耳机里常年循环<strong>周杰伦、陶喆、孙燕姿</strong>,前不久还刚刚圆梦,去现场看了杰伦的南京演唱会;书页之间也留着位置,<strong>《我不是戏神》《十日终焉》</strong>都是我追得上头的作品;闲下来的时候也爱追番,《刺客伍六七》里的柒是我最喜欢的角色——冷静、执着,关键时刻从不掉链子。</p>
+          <p>关于未来,我的打算很朴素:先沉下心来,把 AI 学得足够扎实、理解得足够深刻,然后跟随社团里的各位大佬一起<strong>参加各类比赛</strong>,在真刀真枪的实践里积累经验、丰富阅历。路还长,但我不急。</p>
+          <p>毕竟,我的座右铭是石宇奇的那句话——<strong>「问题不大,我们再来。」</strong>输了没关系,卡住了也没关系,调整一下,我们再来。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="interests" class="reveal" aria-labelledby="int-t">
+      <div class="sec-head"><span class="num">02</span><h2 id="int-t">兴趣爱好</h2><span class="rule"></span></div>
+      <div class="cards">
+        <div class="card"><span class="ico">🏸</span><h3>羽毛球</h3><p>享受每一次挥拍</p></div>
+        <div class="card"><span class="ico">🎧</span><h3>听歌</h3><p>周杰伦 · 陶喆 · 孙燕姿</p></div>
+        <div class="card"><span class="ico">📖</span><h3>小说</h3><p>我不是戏神 · 十日终焉</p></div>
+        <div class="card"><span class="ico">📺</span><h3>看动漫</h3><p>最爱《刺客伍六七》的柒</p></div>
+      </div>
+      <div class="now-playing">
+        <div class="vinyl" aria-hidden="true"></div>
+        <div>
+          <div class="np-label">NOW PLAYING</div>
+          <div class="np-song">《轨迹》</div>
+          <div class="np-artist">周杰伦 · 寻找周杰伦 EP (2003)</div>
+          <div class="np-lyric">“又想了一遍,你温柔的脸,我已快看不见。”</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="motto reveal" aria-labelledby="motto-t">
+      <span class="brush" aria-hidden="true"></span>
+      <h2 id="motto-t" class="big">“问题不大,<em>我们再来</em>。”</h2>
+      <p class="by">—— 石宇奇</p>
+    </section>
+
+    <section id="contact" class="reveal" aria-labelledby="ct-t">
+      <div class="sec-head"><span class="num">03</span><h2 id="ct-t">联系方式</h2><span class="rule"></span></div>
+      <div class="contact-card">
+        <div>
+          <div class="ct-label">EMAIL</div>
+          <a class="mail" href="mailto:3041043447@qq.com">3041043447@qq.com</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>© 2026 毛筱航 · 问题不大,我们再来</footer>
+  </div>
+
+  <script>
+    // typing effect
+    (function () {
+      var lines = [
+        "> 正在加载:对 AI 的好奇心 ...",
+        "> 状态:Vibe AI Lab 新成员,从零起步",
+        "> 信条:问题不大,我们再来"
+      ];
+      var el = document.getElementById("typed");
+      var li = 0, ci = 0, del = false;
+      function tick() {
+        var cur = lines[li];
+        if (!del) {
+          ci++;
+          el.textContent = cur.slice(0, ci);
+          if (ci === cur.length) { del = true; setTimeout(tick, 1600); return; }
+          setTimeout(tick, 60);
+        } else {
+          ci--;
+          el.textContent = cur.slice(0, ci);
+          if (ci === 0) { del = false; li = (li + 1) % lines.length; }
+          setTimeout(tick, 24);
+        }
+      }
+      tick();
+    })();
+
+    // reveal on scroll
+    (function () {
+      var els = document.querySelectorAll(".reveal");
+      if (!("IntersectionObserver" in window)) {
+        els.forEach(function (e) { e.classList.add("on"); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add("on"); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.15 });
+      els.forEach(function (e) { io.observe(e); });
+    })();
+  </script>
+</body>
+</html>
